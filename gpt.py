@@ -6,7 +6,14 @@ load_dotenv()
 
 openai.api_key = os.getenv("OPENAI_KEY")
 
-prompt = "Will this API generate the same message as chatGPT?"
-response = openai.Completion.create(engine="davinci", prompt=prompt, max_tokens=50)
-output = response.choices[0].text
-print(output)
+prompt = "Hello GPT"
+
+response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[
+        {"role": "user", "content": prompt},
+    ],
+)
+
+# output = response.choices[0].text
+print(response.choices[0].message.content)
