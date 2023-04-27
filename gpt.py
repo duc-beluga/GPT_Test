@@ -1,11 +1,12 @@
 import openai
-openai.api_key = "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"
+from dotenv import load_dotenv
+import os
 
-prompt = "Hello, my name is "
-response = openai.Completion.create(
-    engine="davinci",
-    prompt=prompt,
-    max_tokens=50
-)
+load_dotenv()
+
+openai.api_key = os.getenv("OPENAI_KEY")
+
+prompt = "Will this API generate the same message as chatGPT?"
+response = openai.Completion.create(engine="davinci", prompt=prompt, max_tokens=50)
 output = response.choices[0].text
 print(output)
