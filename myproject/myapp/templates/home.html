@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MyApp Home</title>
+  </head>
+  <body>
+    <h1>{{ header }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="name">Enter your prompt:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Submit</button>
+    </form>
+    {% if prompt_ans %}
+    <p>GPT: {{ prompt_ans }}</p>
+    {% endif %}
+  </body>
+</html>
